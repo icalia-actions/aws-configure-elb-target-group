@@ -1,0 +1,45 @@
+name: Deploy AWS ECS Service
+description: Deploys a service with the given task definition and service templates
+
+branding:
+  icon: activity
+  color: red
+
+inputs:
+  name:
+    description: The name of your service. Up to 255 letters (uppercase and lowercase), numbers, and hyphens are allowed.
+    required: true
+  cluster:
+    description: The AWS ECS cluster where we should run the task
+    required: false
+  desired-count:
+    description: The number of instantiations of the specified task definition to place and keep running on your cluster.
+    required: false
+  target-group-arn:
+    description: The Target Group ARN for the service to associate
+    required: false
+  template:
+    description: The path to the AWS ECS Service template to use
+    required: false
+  force-new-deployment:
+    description: Forces a new service deployment
+    required: false
+  definition-template:
+    description: The path to the AWS ECS Task Definition template to use
+    required: false
+  container-images:
+    description: A JSON map of containers and their respective images to use
+    required: false
+  environment-vars:
+    description: A JSON map of environment variables that will be replaced in the template (on all containers)
+    required: false
+
+outputs:
+  service-arn: # id of output
+    description: The Service ARN
+  task-definition-arn:
+    description: The Service's Task Definition ARN
+
+runs:
+  using: node12
+  main: index.js
