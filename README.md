@@ -5,29 +5,13 @@ Finds or creates an AWS ELB Target Group
 ## Usage
 
 ```yaml
-      - name: Deploy AWS ECS Service
+      - name: Configure AWS ELB Target Group
         uses: icalia-actions/aws-configure-elb-target-group@v0.0.1
         with:
-          name: my-service
-          cluster: my-cluster
-          template: templates/ecs/my-service.json
-
-          # You can optionally specify the desired task count:
-          desired-count: 1
-
-          # If you provide a task definition template, it will get registered:
-          definition-template: templates/ecs/my-task-definition.json
-
-          # You can override the image used on any container - the most common
-          # use case is to deploy an image built & pushed on a previous step:
-          container-images: '{"my-container":"my-built-image"}'
-
-          # You can optionally override any environment variable in the task 
-          # container definitions, given that the overriden environment variable
-          # already exists in the container definition:
-          environment-vars: '{"FOO":"BAR"}'
-
-          # If your service must be associated with a load balancer target group,
-          # you can specify a Target Group ARN:
-          target-group-arn: my-target-group-arn
+          name: my-target-group
+          port: "80"
+          protocol: HTTP
+          target-type: ip
+          vpc-id: vpc-00000001
+          health-check-path: /health
 ```
