@@ -1,44 +1,35 @@
-name: Deploy AWS ECS Service
-description: Deploys a service with the given task definition and service templates
-
-branding:
-  icon: activity
-  color: red
+name: Configure AWS ELB Target Group
+description: Finds or creates a given Target Group
 
 inputs:
   name:
-    description: The name of your service. Up to 255 letters (uppercase and lowercase), numbers, and hyphens are allowed.
+    description: The name of the target group.
     required: true
-  cluster:
-    description: The AWS ECS cluster where we should run the task
+  protocol:
+    description: The protocol to use for routing traffic to the targets.
     required: false
-  desired-count:
-    description: The number of instantiations of the specified task definition to place and keep running on your cluster.
+  protocol-version:
+    description: The protocol version.
     required: false
-  target-group-arn:
-    description: The Target Group ARN for the service to associate
+  port:
+    description: The port for the load balancer traffic
     required: false
-  template:
-    description: The path to the AWS ECS Service template to use
+  vpc-id:
+    description: The identifier of the virtual private cloud (VPC).
     required: false
-  force-new-deployment:
-    description: Forces a new service deployment
+  health-check-protocol:
+    description: The protocol the load balancer uses when performing health checks on targets.
     required: false
-  definition-template:
-    description: The path to the AWS ECS Task Definition template to use
+  health-check-path:
+    description: The destination for health checks on the targets.
     required: false
-  container-images:
-    description: A JSON map of containers and their respective images to use
-    required: false
-  environment-vars:
-    description: A JSON map of environment variables that will be replaced in the template (on all containers)
+  target-type:
+    description: The port on which the targets receive traffic.
     required: false
 
 outputs:
-  service-arn: # id of output
-    description: The Service ARN
-  task-definition-arn:
-    description: The Service's Task Definition ARN
+  target-group-arn:
+    description: ARN of the configured target group
 
 runs:
   using: node12
