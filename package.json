@@ -1,6 +1,6 @@
 {
   "name": "@icalialabs/aws-configure-elb-target-group",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Finds or creates an AWS ELB Target Group",
   "main": "lib/main.js",
   "scripts": {

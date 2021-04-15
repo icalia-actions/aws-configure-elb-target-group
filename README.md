@@ -6,7 +6,7 @@ Finds or creates an AWS ELB Target Group
 
 ```yaml
       - name: Configure AWS ELB Target Group
-        uses: icalia-actions/aws-configure-elb-target-group@v0.0.1
+        uses: icalia-actions/aws-configure-elb-target-group@v0.0.2
         with:
           name: my-target-group
           port: "80"
