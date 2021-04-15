@@ -1,6 +1,10 @@
 name: Configure AWS ELB Target Group
 description: Finds or creates a given Target Group
 
+branding:
+  icon: activity
+  color: red
+
 inputs:
   name:
     description: The name of the target group.
