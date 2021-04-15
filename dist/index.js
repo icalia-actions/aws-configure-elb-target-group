@@ -22,19 +22,19 @@ const core_1 = __nccwpck_require__(2186);
 const target_group_management_1 = __nccwpck_require__(8966);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        const name = core_1.getInput('name');
+        const name = core_1.getInput("name");
         let targetGroup = yield target_group_management_1.configureTargetGroup({
             name,
-            vpcId: core_1.getInput('vpc-id') || null,
-            protocol: core_1.getInput('protocol') || null,
-            port: parseInt(core_1.getInput('port')) || null,
-            targetType: core_1.getInput('target-type') || null,
-            healthCheckPath: core_1.getInput('health-check-path') || null,
-            healthCheckProtocol: core_1.getInput('health-check-protocol') || null
+            vpcId: core_1.getInput("vpc-id") || null,
+            protocol: core_1.getInput("protocol") || null,
+            port: parseInt(core_1.getInput("port")) || null,
+            targetType: core_1.getInput("target-type") || null,
+            healthCheckPath: core_1.getInput("health-check-path") || null,
+            healthCheckProtocol: core_1.getInput("health-check-protocol") || null,
         });
         const arn = targetGroup === null || targetGroup === void 0 ? void 0 : targetGroup.TargetGroupArn;
         core_1.info(`Target group ARN: ${arn}`);
-        core_1.setOutput('target-group-arn', arn);
+        core_1.setOutput("target-group-arn", arn);
         return 0;
     });
 }
@@ -110,15 +110,17 @@ exports.describeTargetGroup = describeTargetGroup;
 function createTargetGroup(inputs) {
     return __awaiter(this, void 0, void 0, function* () {
         const ecs = getClient();
-        const { TargetGroups } = yield ecs.createTargetGroup({
+        const { TargetGroups } = yield ecs
+            .createTargetGroup({
             Name: inputs.name,
             Port: inputs.port,
             VpcId: inputs.vpcId,
             Protocol: inputs.protocol,
             TargetType: inputs.targetType,
             HealthCheckPath: inputs.healthCheckPath,
-            HealthCheckProtocol: inputs.healthCheckProtocol
-        }).promise();
+            HealthCheckProtocol: inputs.healthCheckProtocol,
+        })
+            .promise();
         return TargetGroups === null || TargetGroups === void 0 ? void 0 : TargetGroups.pop();
     });
 }
