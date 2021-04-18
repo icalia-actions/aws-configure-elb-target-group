@@ -1,5 +1,6 @@
 name: Configure AWS ELB Target Group
 description: Finds or creates a given Target Group
+author: Icalia Labs
 
 branding:
   icon: activity
